@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
+      Scoped to the exact external origins Scanbite talks to (see
+      docs/architecture.md External dependencies): Open Food Facts' API and
+      its product-image CDN, plus the USDA FoodData Central API used as a
+      fallback data source (see docs/architecture.md "Two-source lookup").
+      media-src is needed for camera video playback via getUserMedia (no
+      remote media origin - it's the local camera stream). connect-src also
+      allows Open Food Facts' own "add product" contribution page, opened as
+      a plain link (new tab), not fetched.
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://images.openfoodfacts.org; connect-src 'self' https://world.openfoodfacts.org https://api.nal.usda.gov; object-src 'none'; base-uri 'self'"
+    />
+    <title>Scanbite - Know what's really in it</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,86 @@
+@import 'tailwindcss';
+
+/*
+ * Design tokens for Scanbite. The accent and semantic good/medium/poor
+ * colors intentionally echo Nutri-Score's own A-E palette (dark green to
+ * red) since users already associate that scale with "how healthy is
+ * this" - reinventing a different color language here would work against
+ * recognition, not for it.
+ */
+@theme {
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  --color-canvas: #f6f8f4;
+  --color-surface: #ffffff;
+  --color-surface-sunken: #edf2e8;
+  --color-hairline: #dde5d6;
+  --color-ink: #1b2318;
+  --color-ink-muted: #4a5645;
+  --color-ink-faint: #63705d;
+  --color-accent: #2e7d32;
+
+  --color-good: #1e7d32;
+  --color-medium: #d98c1d;
+  --color-poor: #c62828;
+}
+
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+}
+
+/* A visible focus ring everywhere, not just browser defaults - keyboard navigation should be as clear as pointer interaction. */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-hairline);
+  border-radius: 1rem;
+  box-shadow: 0 1px 2px rgba(27, 35, 24, 0.04);
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-surface-sunken) 25%,
+    var(--color-hairline) 50%,
+    var(--color-surface-sunken) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-shimmer {
+    animation: none;
+    background: var(--color-surface-sunken);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(4px);
+  }
+}
